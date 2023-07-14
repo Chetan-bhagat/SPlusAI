@@ -313,6 +313,12 @@ async function deletes(event) {
         return response.json();
     }).then((res) => {
         if (res.error) {
+            swal({
+                title: "Login Again",
+                text: "Authentication error",
+                type: "error",
+            });
+            login()
             login()
         } else if (res._id == id) {
             swal({
