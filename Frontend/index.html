@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplusAI</title>
+    <link rel="stylesheet" href="./Style/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1><i class="fa-solid fa-users"></i> User Details</h1>
+        </div>
+        <div>
+            <input type="text" class="search-input" placeholder="🔍Search here...">
+            <i onclick="newuser()" class="fa-solid fa-user-plus"></i>
+        </div>
+    </header>
+    <div id="container" style="overflow: auto; max-height: 300px;">
+        <table>
+            <thead>
+                <th id="Id" class="curson" onclick="toogleid('Id')" onmouseenter="overid('Id')"
+                    onmouseleave="leaveid('Id')">Id </th>
+                <th id="Name" class="curson" onclick="toogleid('Name')" onmouseenter="overid('Name')"
+                    onmouseleave="leaveid('Name')">Name</th>
+                <th id="Address" class="curson" onclick="toogleid('Address')" onmouseenter="overid('Address')"
+                    onmouseleave="leaveid('Address')">Address</th>
+                <th id="Email" class="curson" onclick="toogleid('Email')" onmouseenter="overid('Email')"
+                    onmouseleave="leaveid('Email')">Email</th>
+                <th id="Mobile" class="curson" onclick="toogleid('Mobile')" onmouseenter="overid('Mobile')"
+                    onmouseleave="leaveid('Mobile')">Mobile </th>
+                <th id="Gender" class="curson" onclick="toogleid('Gender')" onmouseenter="overid('Gender')"
+                    onmouseleave="leaveid('Gender')">Gender</th>
+                <th id="City" class="curson" onclick="toogleid('City')" onmouseenter="overid('City')"
+                    onmouseleave="leaveid('City')">City</th>
+                <th>Action</th>
+            </thead>
+            <tbody id="tbody">
+
+
+            </tbody>
+
+
+        </table>
+    </div>
+    <br>
+    <div id="footer">
+        <p>Row per page:
+            <select id="itemPerRow" onchange="limits()">
+                <option> 5 </option>
+                <option> 10</option>
+                <option> 15 </option>
+                <option> All </option>
+            </select>
+            <spam id="start">1</spam>-
+            <spam id="end">5</spam> of <spam id="total"></spam>
+            <spam class="curson" onclick="pageDec()"> &nbsp;<b>|&lt; &nbsp; </b> </spam>
+            <spam class="curson" onclick="itemDec()"> <b>&lt;</b> </spam>
+            <spam class="curson" onclick="itemInc()">&nbsp;<b>&gt; </b>&nbsp; </spam>
+            <spam class="curson" onclick="pageInc()">&nbsp;<b>|&gt; </b> </spam>
+        </p>
+    </div>
+
+
+    <div id="register">
+        <div class="center">
+            <h2 style="color: rgb(115, 6, 123);">Register</h2>
+            <i style="color: rgb(115, 6, 123);" onclick="toogle1()" class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <form id="myForm">
+            <input type="text" placeholder="Enter Name" id="fullname" required>
+            <textarea rows="4" cols="50" placeholder="Enter description..." id="address" required></textarea>
+            <input type="email" placeholder="Enter Email" id="email" required>
+            <input type="password" placeholder="Enter Password" id="password" required>
+            <input type="tel" minlength="10" maxlength="10" placeholder="Enter Mobile Number" id="mobileno" required>
+            <label for="male">Gender</label>
+            <div>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <label>City</label>
+            <select id="city">
+
+                <option>-Select-</option>
+                <option>Pune</option>
+                <option>hyderabad</option>
+                <option>Ahmedabad</option>
+                <option>Mumbai</option>
+                <option>Bangaloru</option>
+            </select>
+            <div>
+                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="checked">
+                <label for="myCheckbox">I aggree to the company term and policy</label>
+            </div>
+            <div class="center">
+                <input type="submit" id="submit" value="SIGN UP"> <button class="reset" onclick="resetForm()"
+                    type="button" value="Reset Form" onclick="resetForm()">RESET</button>
+            </div>
+        </form>
+
+    </div>
+    <div id="updates">
+        <div class="center">
+            <h2 style="color: rgb(115, 6, 123);">Update</h2>
+            <i style="color: rgb(115, 6, 123);" onclick="toogle3()" class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <form id="update_form">
+            <input type="text" placeholder="Enter Name" id="update_fullname" required>
+            <textarea rows="4" cols="50" placeholder="Enter description..." id="update_address" required></textarea>
+            <input type="email" placeholder="Enter Email" id="update_email" required>
+            <input type="password" placeholder="Enter Password" id="update_password" required>
+            <input type="tel" minlength="10" maxlength="10" placeholder="Enter Mobile Number" id="update_mobileno"
+                required>
+            <label for="male">Gender</label>
+            <div>
+                <input type="radio" id="update_male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="update_female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <label>City</label>
+            <select id="update_city">
+
+                <option>-Select-</option>
+                <option>Pune</option>
+                <option>hyderabad</option>
+                <option>Ahmedabad</option>
+                <option>Mumbai</option>
+                <option>Bangaloru</option>
+            </select>
+            <div>
+                <input type="checkbox" id="update_myCheckbox" name="myCheckbox" value="checked">
+                <label for="myCheckbox">I aggree to the company term and policy</label>
+            </div>
+            <div class="center">
+                <input type="submit" id="update_submit" value="SIGN UP"> <button class="reset" onclick="resetForm()"
+                    type="button" value="Reset Form">RESET</button>
+            </div>
+        </form>
+
+    </div>
+    <div id="login">
+        <div class="center">
+            <h2 style="color: rgb(115, 6, 123);">Login</h2>
+            <i style="color: rgb(115, 6, 123);" onclick="toogle2()" class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <form id="loginform">
+
+            <input type="email" placeholder="Enter Email" id="login_email" required>
+            <input type="password" placeholder="Enter Password" id="login_password" required>
+            <div>
+                <input type="checkbox" id="myCheckbox2" name="myCheckbox" value="checked">
+                <label for="myCheckbox">I aggree to the company term and policy</label>
+            </div>
+            <div class="center">
+                <input type="submit" id="submit2" value="SIGN UP">
+            </div>
+        </form>
+
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="index.js">
+
+</script>

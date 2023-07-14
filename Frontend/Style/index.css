@@ -1,0 +1,114 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    margin: 0%;
+    padding: 0%;
+    
+}
+
+.fa-solid {
+    color: rgb(14, 185, 252);
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px 0 40px;
+}
+
+.search-input {
+    padding-right: 30px;
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    right: 230px;
+    top: 6%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 90%;
+}
+th,
+td {
+    padding: 8px;
+    width: auto;
+    text-align: center;
+    border-bottom: 1px solid rgb(215, 205, 205)
+}
+#action{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.fa-trash-can{
+    color: red;
+}
+#register,#login,#updates{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex ;
+    width: 30%;
+    margin: auto;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;    padding: 10px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    display: none;
+    box-sizing: content-box;
+}
+#register>div,#login>div,#updates>div{
+    display:flex ;
+    align-items: center;
+}
+#register>form>input,#register>form>textarea,#login>form>input,#updates>form>input,#updates>form>textarea{
+    width: 80%;
+    padding: 5px;
+    
+}
+form>*{
+    margin: 5px;
+}
+#submit,#submit2,#submit3{
+    background-color: green;
+    padding: 8px;
+    border-radius: 3px;
+    border: 0ch;
+    color: white;
+}
+.reset{
+    background-color: rgb(246, 50, 168);
+    padding: 8px;
+    border-radius: 3px;
+    border: 0ch;
+    color: white;
+}
+.fa-circle-xmark{
+    margin-left: 140%;
+    cursor: pointer;
+    color: rgb(246, 50, 168);
+}
+
+.center{
+    margin: auto;
+}
+#footer{
+    float: right;
+    margin-right: 70px;
+
+}
+.curson{
+    cursor: pointer;
+}
