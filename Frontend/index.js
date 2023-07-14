@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:9160'
+const baseURL = 'https://zany-teal-brown-bear-belt.cyclic.app'
 var register_form = document.querySelector('#register>form')
 var update_form = document.querySelector('#updates>form')
 var login_form = document.querySelector('#login>form');
@@ -15,10 +15,10 @@ async function render() {
         document.querySelector('#total').innerText = total
         data = await fetch(`${baseURL}/api/pages?page=1&limit=5`);
         data = await data.json();
-        itemPerRow=5
+        itemPerRow = 5
         render_data(data)
     } catch (err) {
-       
+
         (err)
     }
 };
@@ -33,53 +33,53 @@ async function limits() {
 async function pageDec() {
     end = document.querySelector('#end').innerText;
     start = document.querySelector('#start').innerText;
-    if (start>itemPerRow) {
-        start=Number(start)-itemPerRow;
-        end=Number(end)-itemPerRow
+    if (start > itemPerRow) {
+        start = Number(start) - itemPerRow;
+        end = Number(end) - itemPerRow
         let data = await fetch(`${baseURL}/api/startend?start=${start}&end=${end}`);
         data = await data.json();
         render_data(data)
-        document.querySelector('#start').innerText =start;
-        document.querySelector('#end').innerText =end
+        document.querySelector('#start').innerText = start;
+        document.querySelector('#end').innerText = end
     }
 }
 async function pageInc() {
     end = document.querySelector('#end').innerText;
     start = document.querySelector('#start').innerText;
-    if (total-end>=itemPerRow) {
-        start=Number(start)+itemPerRow;
-        end=Number(end)+itemPerRow
+    if (total - end >= itemPerRow) {
+        start = Number(start) + itemPerRow;
+        end = Number(end) + itemPerRow
         let data = await fetch(`${baseURL}/api/startend?start=${start}&end=${end}`);
         data = await data.json();
         render_data(data)
-        document.querySelector('#start').innerText =start;
-        document.querySelector('#end').innerText =end
+        document.querySelector('#start').innerText = start;
+        document.querySelector('#end').innerText = end
     }
 };
-async function itemDec(){
+async function itemDec() {
     end = document.querySelector('#end').innerText;
     start = document.querySelector('#start').innerText;
-    if (start>1) {
-        start=Number(start)-1;
-        end=Number(end)-1
+    if (start > 1) {
+        start = Number(start) - 1;
+        end = Number(end) - 1
         let data = await fetch(`${baseURL}/api/startend?start=${start}&end=${end}`);
         data = await data.json();
         render_data(data)
-        document.querySelector('#start').innerText =start;
-        document.querySelector('#end').innerText =end
+        document.querySelector('#start').innerText = start;
+        document.querySelector('#end').innerText = end
     }
 }
-async function itemInc(){
+async function itemInc() {
     end = document.querySelector('#end').innerText;
     start = document.querySelector('#start').innerText;
-    if (end<total) {
-        start=Number(start)+1;
-        end=Number(end)+1
+    if (end < total) {
+        start = Number(start) + 1;
+        end = Number(end) + 1
         let data = await fetch(`${baseURL}/api/startend?start=${start}&end=${end}`);
         data = await data.json();
         render_data(data)
-        document.querySelector('#start').innerText =start;
-        document.querySelector('#end').innerText =end
+        document.querySelector('#start').innerText = start;
+        document.querySelector('#end').innerText = end
     }
 }
 
@@ -115,10 +115,21 @@ function newuser() {
         let password = document.querySelector('#password').value
         let condition = document.querySelector('#myCheckbox').checked
         if (!gender) {
-            alert("Please Select Gender")
+            swal({
+                title: "Error!",
+                text: "please select gender",
+                type: "error",
+                confirmButtonText: "OK"
+            });
         } else {
             if (city == "-Select-") {
-                alert("Please Select City")
+                swal({
+                    title: "Error!",
+                    text: "Please Select City",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+
             } else {
                 if (condition) {
                     gender = gender.value
@@ -133,16 +144,42 @@ function newuser() {
                         return response.json()
                     }).then((res) => {
                         if (res.msg == "User Exist") {
-                            alert("Email already exist")
+                            swal({
+                                title: "Email already exist",
+                                text: "try another email",
+                                type: "error",
+                            });
                         } else {
-                            alert("User register successful✅")
+                            swal({
+                                title: "User register successful✅",
+                                text: "welcome",
+
+                            });
+                            setTimeout(()=>{
+                                setTimeout(()=>{
+                                    window.location.reload()
+                                },1000)
+                                
+                            },1000)
                         }
+
                     })
                         .catch(error => {
-                            alert(`Something Went wrong`)
+                            swal({
+                                title: `Something Went wrong`,
+                                text: "error",
+                                type: "error",
+                                confirmButtonText: "OK"
+                            });
+
                         });
                 } else {
-                    alert("Please aggree term and condition")
+                    swal({
+                        title: `Please aggree term and condition`,
+                        text: "error",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
                 }
             }
         }
@@ -169,6 +206,15 @@ function resetForm() {
 }
 async function updates(event) {
     let id = event.target.attributes[1].nodeValue;
+    if( localStorage.getItem('token')==null || !localStorage.getItem('token')){
+        swal({
+            title: "Login Again",
+            text: "Authentication error",
+            type: "error",
+        });
+        login()
+        return
+    }
     document.querySelector('#container').style.filter = 'blur(5px)'
     document.getElementById('updates').style.display = "flex"
     update_form.addEventListener('submit', async (event) => {
@@ -182,10 +228,21 @@ async function updates(event) {
         let password = document.querySelector('#update_password').value
         let condition = document.querySelector('#update_myCheckbox').checked
         if (!gender) {
-            alert("Please Select Gender")
+            swal({
+                title: "Error!",
+                text: "please select gender",
+                type: "error",
+                confirmButtonText: "OK"
+            });
         } else {
             if (city == "-Select-") {
-                alert("Please Select City")
+                swal({
+                    title: "Error!",
+                    text: "Please Select City",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+
             } else {
                 if (condition) {
                     gender = gender.value
@@ -200,18 +257,42 @@ async function updates(event) {
                     }).then(response => {
                         return response.json()
                     }).then((res) => {
-                        if (res.msg == "Logi") {
-                            alert("Email already exist")
+                        if (res.msg == "Login Again") {
+                            swal({
+                                title: "Login Again",
+                                text: "Authentication error",
+                                type: "error",
+                            });
+                            login()
                         } else {
-                            alert("User register successful✅")
+                            swal({
+                                title: "User Update successful✅",
+                                text: "welcome",
+                            });
+                            setTimeout(()=>{
+                                setTimeout(()=>{
+                                    window.location.reload()
+                                },1000)
+                                
+                            },1000)
                         }
                     })
                         .catch(error => {
 
-                            alert(`Something Went wrong`)
+                            swal({
+                                title: `Something Went wrong`,
+                                text: "error",
+                                type: "error",
+                                confirmButtonText: "OK"
+                            });
                         });
                 } else {
-                    alert("Please aggree term and condition")
+                    swal({
+                        title: `Please aggree term and condition`,
+                        text: "error",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
                 }
             }
         }
@@ -234,18 +315,34 @@ async function deletes(event) {
         if (res.error) {
             login()
         } else if (res._id == id) {
-            alert("User details deleted");
-            window.location.reload()
+            swal({
+                title: `user Deleted`,
+                text: "User removed",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+            setTimeout(()=>{
+                setTimeout(()=>{
+                    window.location.reload()
+                },1000)
+                
+            },1000)
         }
+        
+
     })
         .catch(error => {
-            alert(`Something Went wrong`)
+            swal({
+                title: `Something Went wrong`,
+                text: "error",
+                type: "error",
+                confirmButtonText: "OK"
+            });
         });
 
 };
 
 async function login() {
-    alert("login first")
     document.getElementById('login').style.display = "flex"
     document.querySelector('#container').style.filter = 'blur(8px)';
 
@@ -269,13 +366,35 @@ login_form.addEventListener('submit', async (event) => {
     }).then((res) => {
         if (res.msg == "LOGGIN SUCCESSFUL") {
             localStorage.setItem('token', res.token);
-            alert("Login Successful")
+            swal({
+                title: `Login Successful`,
+                text: "Welcome",
+                confirmButtonText: "OK"
+            });
+            setTimeout(()=>{
+                setTimeout(()=>{
+                    window.location.reload()
+                },1000)
+                
+            },1000)
+
         } else {
-            alert("Please enter valid details")
+            swal({
+                title: `Please enter valid details`,
+                text: "error",
+                type: "error",
+                confirmButtonText: "OK"
+            });
         }
     })
         .catch(error => {
-            alert(`Something Went wrong`)
+            swal({
+                title: `Something Went wrong`,
+                text: "check It",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+        
         });
 
 });

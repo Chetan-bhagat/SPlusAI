@@ -38,6 +38,7 @@ table {
     margin: auto;
     width: 90%;
 }
+
 th,
 td {
     padding: 8px;
@@ -81,7 +82,7 @@ td {
 form>*{
     margin: 5px;
 }
-#submit,#submit2,#submit3{
+#submit,#submit2,#update_submit{
     background-color: green;
     padding: 8px;
     border-radius: 3px;
@@ -94,15 +95,23 @@ form>*{
     border-radius: 3px;
     border: 0ch;
     color: white;
+    margin-left: 10px;
 }
 .fa-circle-xmark{
-    margin-left: 140%;
+    font-size: 22px;
+    float: right;
     cursor: pointer;
     color: rgb(246, 50, 168);
+   position: absolute;
+   top: 20px;
+   right: 20px;
 }
 
 .center{
     margin: auto;
+    display: flex;
+
+    
 }
 #footer{
     float: right;
